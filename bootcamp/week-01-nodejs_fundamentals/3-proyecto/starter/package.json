@@ -1,7 +1,7 @@
 {
-  "name": "semana01-proyecto",
+  "name": "semana01-proyecto-vendapp-3171599",
   "version": "1.0.0",
-  "description": "Proyecto semanal — Procesador de datos con Node.js + TypeScript",
+  "description": "Procesador de datos CLI — Dominio: Vending Machines",
   "type": "module",
   "scripts": {
     "dev": "tsx src/index.ts",

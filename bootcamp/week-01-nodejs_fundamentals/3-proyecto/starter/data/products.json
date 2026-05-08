@@ -1,0 +1,14 @@
+[
+  { "id": "v001", "name": "Coca-Cola 350ml", "category": "bebidas", "price": 2500, "stock": 20, "active": true, "machineId": "A1" },
+  { "id": "v002", "name": "Agua Cristal 500ml", "category": "bebidas", "price": 1800, "stock": 15, "active": true, "machineId": "A1" },
+  { "id": "v003", "name": "Snickers", "category": "snacks", "price": 3200, "stock": 12, "active": true, "machineId": "B3" },
+  { "id": "v004", "name": "Papas Margarita", "category": "snacks", "price": 2800, "stock": 10, "active": true, "machineId": "B3" },
+  { "id": "v005", "name": "Jugo Hit Naranja", "category": "bebidas", "price": 2200, "stock": 18, "active": true, "machineId": "A2" },
+  { "id": "v006", "name": "Palomitas", "category": "snacks", "price": 2000, "stock": 0, "active": false, "machineId": "C2" },
+  { "id": "v007", "name": "Yogurt Alpina", "category": "lacteos", "price": 3500, "stock": 8, "active": true, "machineId": "C1" },
+  { "id": "v008", "name": "Leche Entera 200ml", "category": "lacteos", "price": 1500, "stock": 6, "active": true, "machineId": "C1" },
+  { "id": "v009", "name": "Red Bull 250ml", "category": "bebidas", "price": 6500, "stock": 10, "active": true, "machineId": "A2" },
+  { "id": "v010", "name": "Chicles Trident", "category": "dulces", "price": 1200, "stock": 30, "active": true, "machineId": "B1" },
+  { "id": "v011", "name": "Chocolate Jet", "category": "dulces", "price": 1800, "stock": 25, "active": true, "machineId": "B1" },
+  { "id": "v012", "name": "Galletas Oreo", "category": "snacks", "price": 2500, "stock": 0, "active": false, "machineId": "B3" }
+]
