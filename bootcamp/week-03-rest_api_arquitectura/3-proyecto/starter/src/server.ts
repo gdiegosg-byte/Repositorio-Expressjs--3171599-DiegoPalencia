@@ -1,12 +1,13 @@
 // ============================================
 // SERVER — Entry point
+// Dominio: Vending Machines — Diego Palencia 3171599
 // ============================================
 import app from './app';
 
 const PORT = parseInt(process.env['PORT'] ?? '3000', 10);
 
 app.listen(PORT, () => {
-  console.log(`[server] Running on http://localhost:${PORT}`);
-  console.log(`[server] Health: http://localhost:${PORT}/health`);
-  console.log(`[server] API v1: http://localhost:${PORT}/api/v1/items`);
+  console.log(`🏪 Vending Machines API corriendo en http://localhost:${PORT}`);
+  console.log(`   Health: http://localhost:${PORT}/health`);
+  console.log(`   Items:  http://localhost:${PORT}/api/v1/items`);
 });

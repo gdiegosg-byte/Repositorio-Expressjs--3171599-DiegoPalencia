@@ -1,58 +1,43 @@
 // ============================================
 // REPOSITORY — Capa de acceso a datos
+// Dominio: Vending Machines — Diego Palencia 3171599
 // ============================================
-// Reglas de esta capa:
-// - Único punto de acceso al store (array, DB, archivo)
-// - Todos los métodos deben ser async Promise<T>
-// - Retornar copias defensivas (no la referencia interna)
-// - Si no encuentra un elemento, retornar undefined
-//
-// TODO: Renombra "Item" por el modelo de tu dominio
-// TODO: Agrega datos iniciales coherentes con tu dominio
-
 import { Item, CreateItemDto, UpdateItemDto } from '../types';
 
-// TODO: Inicializa el store con 3-5 elementos de tu dominio
 const store: Item[] = [
-  // Ejemplo — reemplaza con datos de tu dominio:
-  // { id: 1, name: 'Ejemplo 1', description: 'Descripcion', active: true, createdAt: new Date().toISOString() },
+  { id: 1, name: 'Coca-Cola 350ml', description: 'Bebida gaseosa clásica, fría y refrescante.', price: 3500, stock: 12, category: 'bebida', calories: 140, machineId: 'VM-001', active: true, createdAt: '2026-01-10T08:00:00.000Z' },
+  { id: 2, name: 'Chitos', description: 'Snack de maíz con sabor a queso. Crujiente y adictivo.', price: 1800, stock: 20, category: 'snack', calories: 160, machineId: 'VM-001', active: true, createdAt: '2026-01-10T08:05:00.000Z' },
+  { id: 3, name: 'Agua Cristal 600ml', description: 'Agua purificada sin gas. Hidratación pura.', price: 2000, stock: 25, category: 'saludable', calories: 0, machineId: 'VM-002', active: true, createdAt: '2026-01-10T08:10:00.000Z' },
+  { id: 4, name: 'Snickers', description: 'Barra de chocolate con maní, caramelo y nougat.', price: 2800, stock: 8, category: 'dulce', calories: 250, machineId: 'VM-002', active: true, createdAt: '2026-01-10T08:15:00.000Z' },
+  { id: 5, name: 'Red Bull 250ml', description: 'Bebida energizante. Te da alas.', price: 6500, stock: 6, category: 'bebida', calories: 110, machineId: 'VM-003', active: true, createdAt: '2026-01-10T08:20:00.000Z' },
 ];
-let nextId = 1;
+let nextId = 6;
 
 export async function findAll(): Promise<Item[]> {
-  // TODO: Retornar copia defensiva del array completo
-  // return [...store];
-  throw new Error('Not implemented');
+  return [...store];
 }
 
 export async function findById(id: number): Promise<Item | undefined> {
-  // TODO: Buscar por id y retornar el elemento o undefined
-  // return store.find((item) => item.id === id);
-  throw new Error('Not implemented');
+  const item = store.find((i) => i.id === id);
+  return item ? { ...item } : undefined;
 }
 
 export async function create(dto: CreateItemDto): Promise<Item> {
-  // TODO: Crear el item con id auto-incremental y createdAt
-  // const item: Item = { id: nextId++, ...dto, createdAt: new Date().toISOString() };
-  // store.push(item);
-  // return { ...item }; // copia defensiva
-  throw new Error('Not implemented');
+  const item: Item = { id: nextId++, ...dto, createdAt: new Date().toISOString() };
+  store.push(item);
+  return { ...item };
 }
 
 export async function update(id: number, dto: UpdateItemDto): Promise<Item | undefined> {
-  // TODO: Encontrar el index, fusionar cambios, retornar copia
-  // const index = store.findIndex((item) => item.id === id);
-  // if (index === -1) return undefined;
-  // store[index] = { ...store[index]!, ...dto };
-  // return { ...store[index]! };
-  throw new Error('Not implemented');
+  const index = store.findIndex((i) => i.id === id);
+  if (index === -1) return undefined;
+  store[index] = { ...store[index]!, ...dto };
+  return { ...store[index]! };
 }
 
 export async function remove(id: number): Promise<boolean> {
-  // TODO: Eliminar y retornar true; si no existe, retornar false
-  // const index = store.findIndex((item) => item.id === id);
-  // if (index === -1) return false;
-  // store.splice(index, 1);
-  // return true;
-  throw new Error('Not implemented');
+  const index = store.findIndex((i) => i.id === id);
+  if (index === -1) return false;
+  store.splice(index, 1);
+  return true;
 }
