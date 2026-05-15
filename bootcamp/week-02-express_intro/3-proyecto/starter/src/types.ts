@@ -1,20 +1,17 @@
 // ============================================
 // TYPES: Interfaz del recurso principal
+// Dominio: Vending Machines — Diego Palencia 3171599
 // ============================================
-// Adapta los campos de Item a tu dominio asignado.
-//
-// Ejemplos por dominio:
-// - Biblioteca:   title: string; author: string; isbn: string; year: number;
-// - Farmacia:     name: string; price: number; stock: number; category: string;
-// - Gimnasio:     name: string; plan: string; memberSince: string;
-// - Restaurante:  name: string; price: number; category: string; available: boolean;
-// - Hotel:        roomNumber: string; type: string; pricePerNight: number; available: boolean;
 
 export interface Item {
   id: number;
-  // TODO: reemplazar estos campos por los de tu dominio
-  name: string;
-  description: string;
+  name: string;          // Nombre del producto (ej: "Coca-Cola 350ml")
+  description: string;   // Descripción del producto
+  price: number;         // Precio en COP
+  stock: number;         // Unidades disponibles
+  category: 'bebida' | 'snack' | 'dulce' | 'saludable';
+  calories: number;      // Calorías por porción
+  machineId: string;     // ID de la máquina (ej: "VM-001")
 }
 
 // DTO usado para crear un nuevo item (sin id, se genera automáticamente)

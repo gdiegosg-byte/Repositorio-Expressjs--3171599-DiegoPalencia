@@ -1,16 +1,24 @@
 import { createApp } from './app.js';
 
+// Dominio: Vending Machines — Diego Palencia 3171599
+
 const PORT = process.env.PORT ?? '3000';
 const app = createApp();
 
-// TODO: Implementar graceful shutdown
-// El servidor debe cerrarse limpiamente ante SIGTERM o SIGINT.
-// Pistas:
-// - const server = app.listen(...) guarda la referencia al servidor
-// - process.on('SIGTERM', () => server.close(() => { ... }))
-// - process.on('SIGINT', () => server.close(() => { ... }))
-
-// Reemplaza esto con la implementación completa:
-app.listen(Number(PORT), () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+const server = app.listen(Number(PORT), () => {
+  console.log(`🏪 Vending Machines API corriendo en http://localhost:${PORT}`);
+  console.log(`   Health: http://localhost:${PORT}/health`);
+  console.log(`   Items:  http://localhost:${PORT}/api/v1/items`);
 });
+
+// Graceful shutdown
+function shutdown(signal: string): void {
+  console.log(`\n${signal} recibido — cerrando servidor...`);
+  server.close(() => {
+    console.log('Servidor cerrado correctamente.');
+    process.exit(0);
+  });
+}
+
+process.on('SIGTERM', () => shutdown('SIGTERM'));
+process.on('SIGINT', () => shutdown('SIGINT'));

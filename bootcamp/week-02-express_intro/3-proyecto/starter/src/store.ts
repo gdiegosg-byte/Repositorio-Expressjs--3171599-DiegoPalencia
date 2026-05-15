@@ -1,43 +1,65 @@
 import type { Item, CreateItemDto, UpdateItemDto } from './types.js';
 
 // Store en memoria — simula una base de datos sin persistencia
-// Los datos se pierden al reiniciar el servidor (se usará BD a partir de week-05)
-const items: Item[] = [];
-let nextId = 1;
+// Dominio: Vending Machines — Diego Palencia 3171599
+const items: Item[] = [
+  {
+    id: 1,
+    name: 'Coca-Cola 350ml',
+    description: 'Bebida gaseosa clásica, fría y refrescante.',
+    price: 3500,
+    stock: 12,
+    category: 'bebida',
+    calories: 140,
+    machineId: 'VM-001',
+  },
+  {
+    id: 2,
+    name: 'Snickers',
+    description: 'Barra de chocolate con maní, caramelo y nougat.',
+    price: 2800,
+    stock: 8,
+    category: 'dulce',
+    calories: 250,
+    machineId: 'VM-001',
+  },
+  {
+    id: 3,
+    name: 'Agua Cristal 600ml',
+    description: 'Agua purificada sin gas. Hidratación pura.',
+    price: 2000,
+    stock: 20,
+    category: 'saludable',
+    calories: 0,
+    machineId: 'VM-002',
+  },
+];
+let nextId = 4;
 
-// TODO: Implementar getAll
-// Debe retornar todos los ítems del array
 export function getAll(): Item[] {
-  // TODO: retornar el array de items
-  return [];
+  return items;
 }
 
-// TODO: Implementar getById
-// Debe retornar el ítem con el id dado, o undefined si no existe
 export function getById(id: number): Item | undefined {
-  // TODO: buscar y retornar el ítem
-  return undefined;
+  return items.find((item) => item.id === id);
 }
 
-// TODO: Implementar create
-// Debe crear un nuevo ítem con un id autoincremental y retornarlo
 export function create(data: CreateItemDto): Item {
-  // TODO: crear, guardar y retornar el nuevo ítem
-  // Pista: usa nextId++ para generar el id
   const newItem: Item = { id: nextId++, ...data };
+  items.push(newItem);
   return newItem;
 }
 
-// TODO: Implementar update
-// Debe actualizar el ítem con el id dado y retornarlo, o undefined si no existe
 export function update(id: number, data: UpdateItemDto): Item | undefined {
-  // TODO: buscar el ítem, actualizar sus campos y retornarlo
-  return undefined;
+  const index = items.findIndex((item) => item.id === id);
+  if (index === -1) return undefined;
+  items[index] = { ...items[index], ...data };
+  return items[index];
 }
 
-// TODO: Implementar remove
-// Debe eliminar el ítem con el id dado y retornar true, o false si no existe
 export function remove(id: number): boolean {
-  // TODO: buscar y eliminar el ítem, retornar éxito
-  return false;
+  const index = items.findIndex((item) => item.id === id);
+  if (index === -1) return false;
+  items.splice(index, 1);
+  return true;
 }
