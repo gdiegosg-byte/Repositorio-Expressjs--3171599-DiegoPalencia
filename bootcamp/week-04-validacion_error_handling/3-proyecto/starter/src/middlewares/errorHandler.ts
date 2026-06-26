@@ -1,45 +1,51 @@
-// ============================================
-// MIDDLEWARES — errorHandler (4 parámetros)
-// ============================================
-import { Request, Response, NextFunction } from 'express';
-import { ZodError } from 'zod';
-import { AppError } from '../errors/AppError';
-import { logger } from '../config/logger';
+import { Request, Response, NextFunction } from "express";
+import { ZodError } from "zod";
+import { AppError } from "../errors/AppError";
+import { logger } from "../config/logger";
 
-// TODO: Implementar el errorHandler con exactamente 4 parámetros.
-// ⚠️ Express detecta los error handlers por la cantidad de parámetros.
-//    Con 3 parámetros lo trataría como middleware normal.
-//
-// Debe distinguir tres tipos de error:
-//
-// 1. ZodError → 400
-//    { error: 'Validation Error', message: '...', issues: [{ field, message }] }
-//
-// 2. AppError → err.statusCode
-//    { error: 'Application Error', message: err.message }
-//    Usar logger.warn() para registrar errores operacionales
-//
-// 3. Error genérico → 500
-//    { error: 'Internal Server Error', message: '...' }
-//    Ocultar stack en producción, enviarlo en desarrollo
-//    Usar logger.error() para registrar errores no controlados
-
+/**
+ * Manejador de errores centralizado. Debe registrarse al final, después
+ * de todas las rutas y del middleware notFound.
+ *
+ * IMPORTANTE: Express solo reconoce un middleware como "error handler"
+ * si tiene exactamente 4 parámetros (err, req, res, next), aunque `next`
+ * no se use dentro del cuerpo.
+ */
 export function errorHandler(
-  err: unknown,
-  _req: Request,
+  err: Error,
+  req: Request,
   res: Response,
-  _next: NextFunction
-): void {
-  // TODO: implementa la distinción de errores aquí
-  // Puedes usar el patrón:
-  // if (err instanceof ZodError) { ... return; }
-  // if (err instanceof AppError) { ... return; }
-  // // Error genérico
-  // const isProduction = process.env['NODE_ENV'] === 'production';
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  next: NextFunction
+) {
+  // 1. Errores de validación de Zod que no se capturaron con safeParse
+  if (err instanceof ZodError) {
+    logger.warn(`ZodError en ${req.method} ${req.originalUrl}: datos inválidos`);
+    return res.status(400).json({
+      success: false,
+      message: "Datos inválidos",
+      issues: err.issues,
+    });
+  }
 
-  logger.error('Unhandled error — implementa el errorHandler');
-  res.status(500).json({
-    error: 'Internal Server Error',
-    message: 'TODO: implementa el errorHandler',
+  // 2. Errores de negocio esperados (AppError)
+  if (err instanceof AppError) {
+    logger.warn(
+      `AppError ${err.statusCode} en ${req.method} ${req.originalUrl}: ${err.message}`
+    );
+    return res.status(err.statusCode).json({
+      success: false,
+      message: err.message,
+    });
+  }
+
+  // 3. Cualquier otro error no controlado -> 500
+  logger.error(`Error no controlado en ${req.method} ${req.originalUrl}: ${err.message}`, {
+    stack: err.stack,
+  });
+
+  return res.status(500).json({
+    success: false,
+    message: "Error interno del servidor",
   });
 }

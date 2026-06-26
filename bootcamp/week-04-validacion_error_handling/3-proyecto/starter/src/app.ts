@@ -1,38 +1,27 @@
-// ============================================
-// APP — configuración de Express
-// Registra middlewares, rutas y manejo de errores
-// en el ORDEN CORRECTO.
-// ============================================
-import express from 'express';
-import { morganMiddleware } from './config/logger';
-import itemsRouter from './routes/items.routes';
-import { notFound } from './middlewares/notFound';
-import { errorHandler } from './middlewares/errorHandler';
+import express, { Application } from "express";
+import { morganMiddleware } from "./config/logger";
+import productsRoutes from "./routes/products.routes";
+import { notFound } from "./middlewares/notFound";
+import { errorHandler } from "./middlewares/errorHandler";
 
-const app = express();
+const app: Application = express();
 
-// TODO: 1. Registrar middlewares generales
-//   app.use(express.json());
-//   app.use(morganMiddleware);
+// 1. Middlewares globales
 app.use(express.json());
 app.use(morganMiddleware);
 
-// Health check — no requiere cambios
-app.get('/health', (_req, res) => {
-  res.json({ status: 'ok' });
+// 2. Rutas
+app.use("/api/v1/items", productsRoutes);
+
+// Endpoint simple de salud, útil para verificar que el servidor está vivo
+app.get("/health", (_req, res) => {
+  res.status(200).json({ success: true, message: "OK" });
 });
 
-// TODO: 2. Registrar rutas del dominio
-//   app.use('/api/v1/items', itemsRouter);
-//   (cambia 'items' por el nombre del recurso de tu dominio)
-app.use('/api/v1/items', itemsRouter);
-
-// TODO: 3. Registrar notFound DESPUÉS de todas las rutas
-//   app.use(notFound);
+// 3. Middleware 404 — debe ir DESPUÉS de las rutas
 app.use(notFound);
 
-// TODO: 4. Registrar errorHandler como ÚLTIMO middleware (4 params)
-//   app.use(errorHandler);
+// 4. Manejador de errores centralizado — siempre al final
 app.use(errorHandler);
 
 export default app;

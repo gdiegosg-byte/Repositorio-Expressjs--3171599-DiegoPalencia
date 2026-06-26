@@ -1,45 +1,66 @@
-// ============================================
-// CONFIG — logger de Winston + stream para Morgan
-// ============================================
-import { createLogger, format, transports } from 'winston';
-import morgan from 'morgan';
+import path from "path";
+import winston from "winston";
+import morgan from "morgan";
 
-const isDev = process.env['NODE_ENV'] !== 'production';
+const isProduction = process.env.NODE_ENV === "production";
 
-// TODO: Implementar el logger de Winston
-// 1. Usar createLogger con:
-//    - level: 'http' en desarrollo, 'warn' en producción
-//    - format.combine + format.timestamp en todos los entornos
-//    - En desarrollo: format.colorize + format.printf con timestamp, level, message
-//    - En producción: format.json
-// 2. Transports:
-//    - Console siempre
-//    - File({ filename: 'logs/error.log', level: 'error' }) solo en producción
-//
-// Ejemplo de la estructura esperada:
-// export const logger = createLogger({ ... });
+/**
+ * Nivel de log: en desarrollo queremos ver hasta las peticiones HTTP (http),
+ * en producción solo nos interesan advertencias y errores (warn).
+ */
+const level = isProduction ? "warn" : "http";
 
-// Placeholder — reemplaza con tu implementación
-export const logger = createLogger({
-  level: isDev ? 'http' : 'warn',
-  format: format.combine(
-    format.timestamp(),
-    // TODO: reemplaza con colorize+printf en dev o json en prod
-    format.simple()
-  ),
-  transports: [
-    // TODO: nuevo transport.Console() con el formato correcto
-    new transports.Console(),
-    // TODO: añade transport.File solo en producción
-  ],
+/**
+ * Formato colorizado y legible para desarrollo.
+ */
+const developmentFormat = winston.format.combine(
+  winston.format.colorize(),
+  winston.format.timestamp({ format: "HH:mm:ss" }),
+  winston.format.printf(({ timestamp, level, message, ...meta }) => {
+    const metaStr = Object.keys(meta).length ? ` ${JSON.stringify(meta)}` : "";
+    return `[${timestamp}] ${level}: ${message}${metaStr}`;
+  })
+);
+
+/**
+ * Formato estructurado en JSON para producción (ideal para sistemas de
+ * agregación de logs como ELK, Datadog, etc.).
+ */
+const productionFormat = winston.format.combine(
+  winston.format.timestamp(),
+  winston.format.errors({ stack: true }),
+  winston.format.json()
+);
+
+const transports: winston.transport[] = [new winston.transports.Console()];
+
+// El transport de archivo solo se activa en producción, según lo requerido.
+if (isProduction) {
+  transports.push(
+    new winston.transports.File({
+      filename: path.join("logs", "error.log"),
+      level: "error",
+    })
+  );
+}
+
+export const logger = winston.createLogger({
+  level,
+  format: isProduction ? productionFormat : developmentFormat,
+  transports,
 });
 
-// TODO: Implementar la stream de Morgan que redirige a logger.http()
-// export const morganStream = { write: (message: string) => logger.http(message.trim()) };
-//
-// TODO: Implementar el middleware de Morgan con la stream
-// const morganFormat = isDev ? 'dev' : 'combined';
-// export const morganMiddleware = morgan(morganFormat, { stream: morganStream });
-
-// Placeholder — reemplaza con tu implementación
-export const morganMiddleware = morgan('dev');
+/**
+ * Middleware de Morgan que redirige sus logs de acceso HTTP hacia Winston,
+ * usando el nivel "http" para no mezclarse con logs de negocio.
+ */
+export const morganMiddleware = morgan(
+  isProduction
+    ? "combined"
+    : ":method :url :status :res[content-length] - :response-time ms",
+  {
+    stream: {
+      write: (message: string) => logger.http(message.trim()),
+    },
+  }
+);

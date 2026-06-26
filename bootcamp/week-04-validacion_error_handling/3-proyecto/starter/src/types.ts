@@ -1,38 +1,46 @@
-// ============================================
-// TYPES — adapta Item al recurso de tu dominio
-// Ejemplo: Book, Medicine, Member, Dish, etc.
-// ============================================
+/**
+ * Categorías permitidas para los productos de las máquinas de vending.
+ */
+export type ProductCategory = "snack" | "bebida" | "dulce" | "otro";
 
-// TODO: renombra Item y sus campos al recurso de tu dominio asignado
-export interface Item {
+/**
+ * Entidad principal del dominio: un producto disponible en una vending machine.
+ */
+export interface Product {
   id: number;
-  name: string;       // Renombra según tu dominio (title, medicationName, etc.)
-  description: string; // Puedes cambiar este campo por otros relevantes
+  name: string;
+  slotCode: string; // Código del slot dentro de la máquina, ej: "A1"
   price: number;
   stock: number;
-  createdAt: Date;
+  category: ProductCategory;
+  createdAt: string;
+  updatedAt: string;
 }
 
-// Tipos de respuesta genéricos — no necesitan cambio
-export interface SingleResponse<T> {
+/**
+ * Forma estándar de respuesta exitosa de la API.
+ */
+export interface ApiSuccessResponse<T> {
+  success: true;
   data: T;
+  meta?: PaginationMeta;
 }
 
-export interface PaginatedResponse<T> {
-  data: T[];
-  total: number;
+/**
+ * Forma estándar de respuesta de error de la API.
+ */
+export interface ApiErrorResponse {
+  success: false;
+  message: string;
+  issues?: unknown;
+}
+
+/**
+ * Metadata de paginación devuelta en los listados.
+ */
+export interface PaginationMeta {
   page: number;
   limit: number;
-}
-
-export interface ValidationErrorResponse {
-  error: string;
-  message: string;
-  issues: Array<{ field: string; message: string }>;
-}
-
-export interface ErrorResponse {
-  error: string;
-  message: string;
-  stack?: string;
+  total: number;
+  totalPages: number;
 }

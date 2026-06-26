@@ -1,9 +1,9 @@
-import app from './app';
-import { logger } from './config/logger';
+import app from "./app";
+import { logger } from "./config/logger";
 
-const PORT = process.env['PORT'] ? Number(process.env['PORT']) : 3000;
+const PORT = process.env.PORT ?? 3000;
 
 app.listen(PORT, () => {
-  // TODO: reemplaza console.log con logger.info
-  logger.info(`Server running on http://localhost:${PORT}`);
+  logger.info(`🚀 Vending Machines API corriendo en http://localhost:${PORT}`);
+  logger.info(`Entorno: ${process.env.NODE_ENV ?? "development"}`);
 });
