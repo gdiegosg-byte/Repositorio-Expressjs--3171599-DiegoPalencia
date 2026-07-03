@@ -1,3 +1,8 @@
+// ============================================
+// ROUTES: Autenticación
+// Dominio: Empresa de Vending Machines
+// ============================================
+
 import { Router } from 'express';
 import * as authController from '../controllers/auth.controller';
 import { authMiddleware } from '../middlewares/auth.middleware';

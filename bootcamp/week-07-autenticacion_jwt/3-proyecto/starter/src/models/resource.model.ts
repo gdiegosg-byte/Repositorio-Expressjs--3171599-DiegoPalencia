@@ -1,35 +1,37 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
 // ============================================
-// MODELO DEL RECURSO PRINCIPAL
+// MODELO DEL RECURSO PRINCIPAL — Máquina Expendedora
 // ============================================
+// Dominio: Empresa de Vending Machines
+//
 // INSTRUCCIONES:
 //
 // 1. Cambia el nombre de este archivo al recurso real de tu dominio.
-//    Ejemplos: book.model.ts, medication.model.ts, member.model.ts
+//    Ejemplo: machine.model.ts
 //
 // 2. Reemplaza la interfaz IResource con los campos de tu recurso.
 //    Elimina los campos de ejemplo y agrega los propios.
 //
-// 3. Renombra el model al final: mongoose.model<IBook>('Book', bookSchema)
+// 3. Renombra el model al final: mongoose.model<IMachine>('Machine', machineSchema)
 //
 // 4. Actualiza las importaciones en repository, service, controller y routes.
 // ============================================
 
 // TODO: Reemplaza IResource con la interfaz real de tu recurso
-// Ejemplo para Biblioteca:
-//   export interface IBook extends Document {
-//     title: string;
-//     author: string;
-//     isbn: string;
-//     available: boolean;
+// Ejemplo para Vending Machines:
+//   export interface IMachine extends Document {
+//     code: string;
+//     model: string;
+//     status: 'active' | 'maintenance' | 'inactive';
+//     location: string;
 //     createdBy: mongoose.Types.ObjectId;
 //   }
 export interface IResource extends Document {
-  // TODO: Define los campos de tu recurso
-  // name: string;
-  // description?: string;
-  // active: boolean;
+  // TODO: Define los campos de tu recurso (ej: máquina expendedora)
+  // code: string;
+  // model: string;
+  // status: 'active' | 'maintenance' | 'inactive';
   // createdBy: mongoose.Types.ObjectId;
   createdAt: Date;
   updatedAt: Date;
@@ -38,19 +40,22 @@ export interface IResource extends Document {
 // TODO: Define el schema de Mongoose con los campos correctos
 const resourceSchema = new Schema<IResource>(
   {
-    // TODO: Agrega los campos de tu recurso aquí
-    // name: {
+    // TODO: Agrega los campos de tu máquina aquí
+    // code: {
     //   type: String,
-    //   required: [true, 'El nombre es requerido'],
+    //   required: [true, 'El código de la máquina es requerido'],
+    //   unique: true,
     //   trim: true,
     // },
-    // description: {
+    // model: {
     //   type: String,
+    //   required: [true, 'El modelo es requerido'],
     //   trim: true,
     // },
-    // active: {
-    //   type: Boolean,
-    //   default: true,
+    // status: {
+    //   type: String,
+    //   enum: ['active', 'maintenance', 'inactive'],
+    //   default: 'active',
     // },
     // createdBy: {
     //   type: Schema.Types.ObjectId,
@@ -62,5 +67,5 @@ const resourceSchema = new Schema<IResource>(
 );
 
 // TODO: Renombra 'Resource' por el nombre real de tu modelo (singular, PascalCase)
-// Ejemplo: mongoose.model<IBook>('Book', bookSchema)
+// Ejemplo: mongoose.model<IMachine>('Machine', machineSchema)
 export const ResourceModel = mongoose.model<IResource>('Resource', resourceSchema);

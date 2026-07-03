@@ -1,3 +1,8 @@
+// ============================================
+// MIDDLEWARE: 404 Not Found
+// Dominio: Empresa de Vending Machines
+// ============================================
+
 import { Request, Response, NextFunction } from 'express';
 
 export function notFound(req: Request, res: Response, next: NextFunction): void {

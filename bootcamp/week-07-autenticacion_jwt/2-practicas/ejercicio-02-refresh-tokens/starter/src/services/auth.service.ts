@@ -1,5 +1,6 @@
 // ============================================
 // PASO 3: Service de Auth con Refresh Tokens
+// Dominio: Empresa de Vending Machines
 // ============================================
 
 import bcrypt from 'bcrypt';

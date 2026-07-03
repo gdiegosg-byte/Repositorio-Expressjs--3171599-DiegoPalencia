@@ -1,5 +1,6 @@
 // ============================================
 // PASO 2: Utilidades de JWT — Access + Refresh
+// Dominio: Empresa de Vending Machines
 // ============================================
 //
 // Descomenta todas las funciones:

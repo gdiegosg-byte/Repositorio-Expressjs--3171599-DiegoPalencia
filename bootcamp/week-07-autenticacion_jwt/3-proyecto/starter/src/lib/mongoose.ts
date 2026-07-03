@@ -1,3 +1,8 @@
+// ============================================
+// LIB: Conexión a MongoDB
+// Dominio: Empresa de Vending Machines
+// ============================================
+
 import mongoose from 'mongoose';
 
 export async function connectDB(): Promise<void> {

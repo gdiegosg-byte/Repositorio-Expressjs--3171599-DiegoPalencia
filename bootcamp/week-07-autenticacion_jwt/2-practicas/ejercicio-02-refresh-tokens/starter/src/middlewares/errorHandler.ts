@@ -1,3 +1,8 @@
+// ============================================
+// MIDDLEWARE: Error Handler
+// Dominio: Empresa de Vending Machines
+// ============================================
+
 import { Request, Response, NextFunction } from 'express';
 import { AppError } from '../errors/AppError';
 

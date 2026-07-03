@@ -1,3 +1,8 @@
+// ============================================
+// APP — Configuración de Express
+// Dominio: Empresa de Vending Machines
+// ============================================
+
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import { authRouter } from './routes/auth.routes';

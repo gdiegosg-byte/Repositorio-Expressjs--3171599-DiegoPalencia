@@ -1,3 +1,8 @@
+// ============================================
+// CONTROLLER: Autenticación
+// Dominio: Empresa de Vending Machines
+// ============================================
+
 import { Request, Response, NextFunction, CookieOptions } from 'express';
 import * as authService from '../services/auth.service';
 import { registerSchema, loginSchema } from '../schemas/auth.schema';

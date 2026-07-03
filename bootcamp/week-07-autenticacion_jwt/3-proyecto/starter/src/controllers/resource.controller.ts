@@ -3,8 +3,9 @@ import * as resourceService from '../services/resource.service';
 import { createResourceSchema, updateResourceSchema } from '../schemas/resource.schema';
 
 // ============================================
-// CONTROLADOR DEL RECURSO PRINCIPAL
+// CONTROLADOR DEL RECURSO PRINCIPAL — Máquina Expendedora
 // ============================================
+// Dominio: Empresa de Vending Machines
 // Implementa los handlers de cada ruta CRUD.
 // Valida con Zod, delega al servicio y maneja la respuesta HTTP.
 // ============================================

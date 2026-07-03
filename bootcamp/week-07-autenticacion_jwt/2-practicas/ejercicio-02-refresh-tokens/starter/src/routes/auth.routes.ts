@@ -1,5 +1,6 @@
 // ============================================
 // PASO 5: Rutas con /refresh y /logout
+// Dominio: Empresa de Vending Machines
 // ============================================
 //
 // Descomenta las rutas de POST /refresh y POST /logout:

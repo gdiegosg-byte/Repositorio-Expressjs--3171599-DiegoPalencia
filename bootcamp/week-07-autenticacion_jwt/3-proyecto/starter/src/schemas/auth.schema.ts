@@ -1,3 +1,8 @@
+// ============================================
+// SCHEMA ZOD: Autenticación
+// Dominio: Empresa de Vending Machines
+// ============================================
+
 import { z } from 'zod';
 
 export const registerSchema = z.object({

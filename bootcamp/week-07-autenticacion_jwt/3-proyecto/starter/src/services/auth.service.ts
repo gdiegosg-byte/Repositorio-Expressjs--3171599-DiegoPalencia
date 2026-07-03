@@ -1,3 +1,8 @@
+// ============================================
+// SERVICE: Autenticación
+// Dominio: Empresa de Vending Machines
+// ============================================
+
 import bcrypt from 'bcrypt';
 import { AppError } from '../errors/AppError';
 import * as usersRepository from '../repositories/users.repository';

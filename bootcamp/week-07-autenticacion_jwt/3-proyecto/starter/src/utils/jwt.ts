@@ -1,3 +1,8 @@
+// ============================================
+// UTILS: JWT - Access & Refresh Tokens
+// Dominio: Empresa de Vending Machines
+// ============================================
+
 import jwt from 'jsonwebtoken';
 import { AppError } from '../errors/AppError';
 

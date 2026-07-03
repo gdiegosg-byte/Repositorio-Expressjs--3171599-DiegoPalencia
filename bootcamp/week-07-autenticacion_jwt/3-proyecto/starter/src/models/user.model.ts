@@ -2,9 +2,10 @@ import mongoose, { Document, Schema } from 'mongoose';
 
 // ============================================
 // MODELO DE USUARIO
+// Dominio: Empresa de Vending Machines
 // ============================================
 // El rol por defecto es 'user'. Si tu dominio requiere
-// roles adicionales (ej: 'admin', 'librarian', 'pharmacist'),
+// roles adicionales (ej: 'admin', 'technician', 'operator'),
 // agrégalos al enum de la propiedad role.
 // ============================================
 

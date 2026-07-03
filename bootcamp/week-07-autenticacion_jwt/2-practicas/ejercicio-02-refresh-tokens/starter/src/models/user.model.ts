@@ -1,5 +1,6 @@
 // ============================================
 // PASO 1: Añadir campo refreshToken al Schema
+// Dominio: Empresa de Vending Machines
 // ============================================
 //
 // El campo `refreshToken` almacena el HASH bcrypt del refresh token

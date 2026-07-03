@@ -1,5 +1,6 @@
 // ============================================
 // PASO 4: Middleware de Autenticación
+// Dominio: Empresa de Vending Machines
 // ============================================
 //
 // Lee el access token de la cookie HttpOnly y lo verifica.

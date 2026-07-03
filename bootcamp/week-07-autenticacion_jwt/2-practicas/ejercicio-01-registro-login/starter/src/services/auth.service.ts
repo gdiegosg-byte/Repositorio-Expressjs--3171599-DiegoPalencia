@@ -1,5 +1,6 @@
 // ============================================
 // PASO 2: Servicio de Autenticación
+// Dominio: Empresa de Vending Machines
 // ============================================
 //
 // Descomenta las secciones marcadas en register() y login():

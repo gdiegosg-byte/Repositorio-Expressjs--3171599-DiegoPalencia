@@ -1,5 +1,6 @@
 // ============================================
 // PASO 1: Schema y Model de Usuario
+// Dominio: Empresa de Vending Machines
 // ============================================
 //
 // El campo `password` tiene `select: false` para que NO se incluya

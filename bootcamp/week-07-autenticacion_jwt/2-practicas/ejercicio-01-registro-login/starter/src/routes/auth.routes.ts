@@ -1,5 +1,6 @@
 // ============================================
 // PASO 5: Rutas de Autenticación
+// Dominio: Empresa de Vending Machines
 // ============================================
 //
 // La ruta GET /me debe estar protegida por authMiddleware.

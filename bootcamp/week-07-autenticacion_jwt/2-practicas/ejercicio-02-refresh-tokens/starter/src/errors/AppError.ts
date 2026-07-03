@@ -1,3 +1,8 @@
+// ============================================
+// ERROR: AppError personalizado
+// Dominio: Empresa de Vending Machines
+// ============================================
+
 export class AppError extends Error {
   constructor(
     public readonly statusCode: number,

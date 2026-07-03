@@ -1,5 +1,6 @@
 // ============================================
 // PASO 3: Utilidades de JWT
+// Dominio: Empresa de Vending Machines
 // ============================================
 //
 // Centraliza la firma y verificación de tokens.

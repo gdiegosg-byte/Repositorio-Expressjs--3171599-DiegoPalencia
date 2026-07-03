@@ -1,3 +1,8 @@
+// ============================================
+// REPOSITORY: Usuarios
+// Dominio: Empresa de Vending Machines
+// ============================================
+
 import { User } from '../models/user.model';
 import type { RegisterDto } from '../schemas/auth.schema';
 

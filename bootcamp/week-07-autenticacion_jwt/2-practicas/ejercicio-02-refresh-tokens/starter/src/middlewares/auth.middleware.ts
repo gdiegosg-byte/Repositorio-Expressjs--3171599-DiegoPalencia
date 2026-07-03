@@ -1,3 +1,8 @@
+// ============================================
+// MIDDLEWARE: Autenticación
+// Dominio: Empresa de Vending Machines
+// ============================================
+
 import { Request, Response, NextFunction } from 'express';
 import { JsonWebTokenError, TokenExpiredError } from 'jsonwebtoken';
 import { verifyAccessToken } from '../utils/jwt';

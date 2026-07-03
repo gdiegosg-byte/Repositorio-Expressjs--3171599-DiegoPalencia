@@ -1,3 +1,8 @@
+// ============================================
+// SERVER — Punto de entrada
+// Dominio: Empresa de Vending Machines
+// ============================================
+
 import 'dotenv/config';
 import { app } from './app';
 import { connectDB } from './lib/mongoose';

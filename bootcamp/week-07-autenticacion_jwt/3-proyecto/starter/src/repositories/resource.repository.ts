@@ -3,8 +3,9 @@ import { CreateResourceDto, UpdateResourceDto } from '../schemas/resource.schema
 import { AppError } from '../errors/AppError';
 
 // ============================================
-// REPOSITORIO DEL RECURSO PRINCIPAL
+// REPOSITORIO DEL RECURSO PRINCIPAL — Máquina Expendedora
 // ============================================
+// Dominio: Empresa de Vending Machines
 // Implementa las operaciones de base de datos.
 // Si renombraste resource.model.ts, actualiza las importaciones arriba.
 // ============================================
