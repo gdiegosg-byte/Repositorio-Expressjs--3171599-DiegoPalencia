@@ -1,10 +1,12 @@
 // ============================================
-// PASO 2: Añadir campo category en el schema Zod de Producto
+// PASO 2: Añadir campo category en el schema Zod de Producto de Vending
 // ============================================
 //
 // El body request trae category como string (el ObjectId en formato hex).
 // Zod debe validar que tenga exactamente 24 caracteres hexadecimales
 // antes de pasarlo al repositorio.
+//
+// Dominio: Empresa de Vending Machines
 //
 // Descomenta el campo `category` en createProductSchema (PASO 2):
 

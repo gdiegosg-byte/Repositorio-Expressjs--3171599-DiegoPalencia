@@ -1,3 +1,8 @@
+// ============================================
+// APP — Configuración de Express
+// Dominio: Empresa de Vending Machines
+// ============================================
+
 import express from 'express';
 import productsRouter from './routes/products.routes';
 import { errorHandler } from './middlewares/errorHandler';

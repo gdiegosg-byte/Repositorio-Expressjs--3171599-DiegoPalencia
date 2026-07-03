@@ -1,10 +1,12 @@
 // ============================================
-// PASO 1: Añadir el campo category al Schema de Producto
+// PASO 1: Añadir el campo category al Schema de Producto de Vending
 // ============================================
 //
 // Los productos referencian categorías usando Schema.Types.ObjectId.
 // En MongoDB se almacena solo el ObjectId (24 hex chars).
 // Al usar .populate('category'), Mongoose lo reemplaza por el objeto completo.
+//
+// Dominio: Empresa de Vending Machines — productos para máquinas expendedoras
 //
 // Descomenta las líneas marcadas como PASO 1 en la interfaz y en el schema:
 
@@ -24,7 +26,7 @@ const productSchema = new Schema<IProduct>(
   {
     name: {
       type: String,
-      required: [true, 'El nombre es requerido'],
+      required: [true, 'El nombre del producto es requerido'],
       trim: true,
       maxlength: [100, 'El nombre no puede superar 100 caracteres'],
     },

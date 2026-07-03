@@ -1,3 +1,8 @@
+// ============================================
+// REPOSITORY: Categoría de Productos de Vending
+// Dominio: Empresa de Vending Machines
+// ============================================
+
 import { MongoServerError } from 'mongodb';
 import { Category } from '../models/category.model';
 import { AppError } from '../errors/AppError';

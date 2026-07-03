@@ -1,63 +1,66 @@
 // ============================================
 // SEED — Insertar datos de prueba
-// TODO: Adaptar nombres y datos a tu dominio
+// Dominio: Empresa de Vending Machines
 // ============================================
 //
-// REGLA IMPORTANTE: Insertar la entidad SECUNDARIA primero,
-// luego la PRINCIPAL usando los _id de la secundaria.
-//
-// Ejemplo para Biblioteca:
-//   Paso A: Insertar Authors → obtener _id
-//   Paso B: Insertar Books con author: author._id
+// Paso A: Insertar Locations (ubicaciones) → obtener _id
+// Paso B: Insertar Machines (máquinas) con location: location._id
 
 import 'dotenv/config';
 import { connectDB, disconnectDB } from './lib/mongoose';
-import { Secondary } from './models/secondary.model';
-import { Primary } from './models/primary.model';
+import { Location } from './models/location.model';
+import { Machine } from './models/machine.model';
 
 async function seed(): Promise<void> {
   await connectDB();
 
-  // TODO: Limpiar colecciones (orden inverso: primary primero, luego secondary)
-  await Primary.deleteMany({});
-  await Secondary.deleteMany({});
+  // Limpiar colecciones (orden inverso: machines primero, luego locations)
+  await Machine.deleteMany({});
+  await Location.deleteMany({});
   console.log('Collections cleared');
 
-  // TODO: Paso A — Insertar entidades secundarias y capturar _id
-  // Adapta los datos a tu dominio:
-  const [item1, item2, item3] = await Secondary.insertMany([
-    { name: 'Secundaria 1' },  // TODO: reemplazar con datos reales de tu dominio
-    { name: 'Secundaria 2' },
-    { name: 'Secundaria 3' },
+  // Paso A — Insertar ubicaciones y capturar _id
+  const [oficinaCentral, centroComercial, universidad] = await Location.insertMany([
+    { name: 'Oficina Central', address: 'Calle 100 #15-20', city: 'Bogotá' },
+    { name: 'Centro Comercial Santafé', address: 'Av. Boyacá #100-30', city: 'Bogotá' },
+    { name: 'Universidad Nacional', address: 'Cra 30 #45-03', city: 'Bogotá' },
   ]);
-  console.log('Secondary entities inserted');
+  console.log('Locations inserted');
 
-  // TODO: Paso B — Insertar entidades principales referenciando los _id
-  // Adapta los campos y valores a tu dominio:
-  await Primary.insertMany([
+  // Paso B — Insertar máquinas referenciando las ubicaciones
+  await Machine.insertMany([
     {
-      name: 'Principal 1',          // TODO: campo real de tu dominio
-      secondary: item1._id,         // TODO: renombrar 'secondary' al campo real
-      // price: 100,                // TODO: añadir campos de tu dominio
+      code: 'VM-001',
+      model: 'Snack Master 3000',
+      status: 'active',
+      location: oficinaCentral._id,
     },
     {
-      name: 'Principal 2',
-      secondary: item1._id,
+      code: 'VM-002',
+      model: 'Bebidas Frías X1',
+      status: 'active',
+      location: oficinaCentral._id,
     },
     {
-      name: 'Principal 3',
-      secondary: item2._id,
+      code: 'VM-003',
+      model: 'Snack Master 3000',
+      status: 'maintenance',
+      location: centroComercial._id,
     },
     {
-      name: 'Principal 4',
-      secondary: item3._id,
+      code: 'VM-004',
+      model: 'Café Express Pro',
+      status: 'active',
+      location: universidad._id,
     },
     {
-      name: 'Principal 5',
-      secondary: item2._id,
+      code: 'VM-005',
+      model: 'Bebidas Frías X1',
+      status: 'inactive',
+      location: universidad._id,
     },
   ]);
-  console.log('Primary entities inserted');
+  console.log('Machines inserted');
 
   console.log('Seed completed successfully');
   await disconnectDB();

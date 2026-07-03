@@ -1,20 +1,20 @@
 // ============================================
-// CONTROLLER: Categorías de Productos de Vending
+// CONTROLLER: Location (Ubicación)
 // Dominio: Empresa de Vending Machines
 // ============================================
 
 import { Request, Response, NextFunction } from 'express';
-import * as service from '../services/categories.service';
+import * as service from '../services/location.service';
 import {
-  createCategorySchema,
-  updateCategorySchema,
-} from '../schemas/category.schema';
-import { objectIdSchema } from '../schemas/product.schema';
+  createLocationSchema,
+  updateLocationSchema,
+} from '../schemas/location.schema';
+import { objectIdSchema } from '../schemas/machine.schema';
 
 export async function getAll(_req: Request, res: Response, next: NextFunction): Promise<void> {
   try {
-    const categories = await service.getAll();
-    res.json(categories);
+    const items = await service.getAll();
+    res.json(items);
   } catch (err) {
     next(err);
   }
@@ -23,8 +23,8 @@ export async function getAll(_req: Request, res: Response, next: NextFunction): 
 export async function getById(req: Request, res: Response, next: NextFunction): Promise<void> {
   try {
     const id = objectIdSchema.parse(req.params['id']);
-    const category = await service.getById(id);
-    res.json(category);
+    const item = await service.getById(id);
+    res.json(item);
   } catch (err) {
     next(err);
   }
@@ -32,9 +32,9 @@ export async function getById(req: Request, res: Response, next: NextFunction): 
 
 export async function create(req: Request, res: Response, next: NextFunction): Promise<void> {
   try {
-    const dto = createCategorySchema.parse(req.body);
-    const category = await service.createCategory(dto);
-    res.status(201).json(category);
+    const dto = createLocationSchema.parse(req.body);
+    const item = await service.createLocation(dto);
+    res.status(201).json(item);
   } catch (err) {
     next(err);
   }
@@ -42,10 +42,10 @@ export async function create(req: Request, res: Response, next: NextFunction): P
 
 export async function update(req: Request, res: Response, next: NextFunction): Promise<void> {
   try {
-    const id  = objectIdSchema.parse(req.params['id']);
-    const dto = updateCategorySchema.parse(req.body);
-    const category = await service.updateCategory(id, dto);
-    res.json(category);
+    const id = objectIdSchema.parse(req.params['id']);
+    const dto = updateLocationSchema.parse(req.body);
+    const item = await service.updateLocation(id, dto);
+    res.json(item);
   } catch (err) {
     next(err);
   }
@@ -54,7 +54,7 @@ export async function update(req: Request, res: Response, next: NextFunction): P
 export async function remove(req: Request, res: Response, next: NextFunction): Promise<void> {
   try {
     const id = objectIdSchema.parse(req.params['id']);
-    await service.deleteCategory(id);
+    await service.deleteLocation(id);
     res.status(204).send();
   } catch (err) {
     next(err);

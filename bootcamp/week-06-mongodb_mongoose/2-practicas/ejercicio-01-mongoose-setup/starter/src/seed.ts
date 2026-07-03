@@ -5,6 +5,8 @@
 // El seed limpia la colección e inserta productos de ejemplo.
 // Ejecutar con: pnpm seed
 //
+// Dominio: Empresa de Vending Machines — productos para máquinas expendedoras
+//
 // Descomenta las siguientes líneas (PASO 5):
 
 import 'dotenv/config';
@@ -21,43 +23,43 @@ import 'dotenv/config';
 //   // Insertar productos de ejemplo
 //   await Product.insertMany([
 //     {
-//       name: 'Camiseta Polo Blanca',
-//       description: 'Camiseta polo de algodón 100%',
-//       price: 59900,
-//       stock: 25,
-//       sku: 'POLO-WHT-001',
-//     },
-//     {
-//       name: 'Sudadera Negra Premium',
-//       description: 'Sudadera con capucha y bolsillo frontal',
-//       price: 89900,
-//       stock: 15,
-//       sku: 'SWEAT-BLK-001',
-//     },
-//     {
-//       name: 'Jeans Slim Fit Azul',
-//       description: 'Jeans de corte slim en denim azul clásico',
-//       price: 119900,
-//       stock: 30,
-//       sku: 'JEAN-BLU-001',
-//     },
-//     {
-//       name: 'Zapatillas Running Pro',
-//       description: 'Zapatillas ligeras para correr',
-//       price: 189900,
-//       stock: 20,
-//       sku: 'SHOE-RUN-001',
-//     },
-//     {
-//       name: 'Gorra Deportiva',
-//       description: 'Gorra con visera curva y cierre ajustable',
-//       price: 39900,
+//       name: 'Papas Fritas Clásicas',
+//       description: 'Papas fritas sabor original 150g',
+//       price: 4500,
 //       stock: 50,
-//       sku: 'CAP-SPT-001',
+//       sku: 'SNK-PAP-001',
+//     },
+//     {
+//       name: 'Barra de Chocolate',
+//       description: 'Barra de chocolate con leche 80g',
+//       price: 5200,
+//       stock: 40,
+//       sku: 'SNK-CHO-001',
+//     },
+//     {
+//       name: 'Agua Mineral',
+//       description: 'Agua mineral sin gas 500ml',
+//       price: 3200,
+//       stock: 60,
+//       sku: 'BEB-AGU-001',
+//     },
+//     {
+//       name: 'Gaseosa Cola',
+//       description: 'Gaseosa sabor cola 355ml',
+//       price: 4800,
+//       stock: 45,
+//       sku: 'BEB-COL-001',
+//     },
+//     {
+//       name: 'Sándwich Mixto',
+//       description: 'Sándwich de jamón y queso 200g',
+//       price: 8900,
+//       stock: 20,
+//       sku: 'COM-SAN-001',
 //     },
 //   ]);
 //
-//   console.log('Seed completed: 5 products inserted');
+//   console.log('Seed completed: 5 vending products inserted');
 //   await disconnectDB();
 // }
 

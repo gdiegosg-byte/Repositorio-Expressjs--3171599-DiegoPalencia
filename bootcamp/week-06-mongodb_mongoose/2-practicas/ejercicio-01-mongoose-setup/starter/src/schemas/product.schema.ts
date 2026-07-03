@@ -1,3 +1,8 @@
+// ============================================
+// SCHEMA ZOD: Producto de Vending
+// Dominio: Empresa de Vending Machines
+// ============================================
+
 import { z } from 'zod';
 
 const objectIdRegex = /^[0-9a-fA-F]{24}$/;

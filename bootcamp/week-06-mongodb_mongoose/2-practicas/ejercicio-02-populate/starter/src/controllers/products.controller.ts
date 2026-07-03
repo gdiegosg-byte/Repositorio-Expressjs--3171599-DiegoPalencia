@@ -1,3 +1,8 @@
+// ============================================
+// CONTROLLER: Productos de Vending
+// Dominio: Empresa de Vending Machines
+// ============================================
+
 import { Request, Response, NextFunction } from 'express';
 import * as service from '../services/products.service';
 import {

@@ -1,3 +1,8 @@
+// ============================================
+// SERVICE: Productos de Vending
+// Dominio: Empresa de Vending Machines
+// ============================================
+
 import * as repo from '../repositories/products.repository';
 import type { CreateProductDto, UpdateProductDto } from '../schemas/product.schema';
 

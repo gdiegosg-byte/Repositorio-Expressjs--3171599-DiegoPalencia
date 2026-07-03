@@ -1,3 +1,8 @@
+// ============================================
+// SCHEMA ZOD: Categoría de Productos de Vending
+// Dominio: Empresa de Vending Machines
+// ============================================
+
 import { z } from 'zod';
 
 export const createCategorySchema = z.object({

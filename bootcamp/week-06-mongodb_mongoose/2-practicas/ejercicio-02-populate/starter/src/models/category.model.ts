@@ -1,3 +1,8 @@
+// ============================================
+// MODELO: Category (Categoría de Productos de Vending)
+// Dominio: Empresa de Vending Machines
+// ============================================
+
 import { Schema, model } from 'mongoose';
 
 interface ICategory {

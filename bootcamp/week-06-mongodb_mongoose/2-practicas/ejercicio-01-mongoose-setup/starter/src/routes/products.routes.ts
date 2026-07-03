@@ -1,3 +1,8 @@
+// ============================================
+// ROUTES: Productos de Vending
+// Dominio: Empresa de Vending Machines
+// ============================================
+
 import { Router } from 'express';
 import * as ctrl from '../controllers/products.controller';
 

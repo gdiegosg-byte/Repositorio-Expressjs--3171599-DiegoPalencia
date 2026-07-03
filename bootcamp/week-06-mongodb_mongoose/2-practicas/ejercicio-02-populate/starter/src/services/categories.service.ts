@@ -1,3 +1,8 @@
+// ============================================
+// SERVICE: Categorías de Productos de Vending
+// Dominio: Empresa de Vending Machines
+// ============================================
+
 import * as repo from '../repositories/categories.repository';
 import type { CreateCategoryDto, UpdateCategoryDto } from '../schemas/category.schema';
 

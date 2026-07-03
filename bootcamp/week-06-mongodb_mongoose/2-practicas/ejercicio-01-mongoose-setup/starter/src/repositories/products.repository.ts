@@ -1,6 +1,7 @@
 // ============================================
 // PASO 3: findAll con paginación
 // PASO 4: findById, create, update, remove
+// Dominio: Empresa de Vending Machines
 // ============================================
 
 import { MongoServerError } from 'mongodb';

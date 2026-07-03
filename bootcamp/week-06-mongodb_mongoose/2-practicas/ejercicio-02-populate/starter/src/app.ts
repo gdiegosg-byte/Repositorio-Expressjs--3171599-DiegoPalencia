@@ -5,6 +5,8 @@
 // Para que los endpoints de categories funcionen,
 // debes montar el router en Express.
 //
+// Dominio: Empresa de Vending Machines
+//
 // Descomenta las líneas marcadas como PASO 5:
 
 import express from 'express';

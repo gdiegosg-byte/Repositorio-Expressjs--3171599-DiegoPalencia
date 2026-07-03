@@ -5,6 +5,8 @@
 // Sin populate: el campo category llega como string ObjectId
 // Con populate: el campo category llega como objeto { _id, name, ... }
 //
+// Dominio: Empresa de Vending Machines
+//
 // Descomenta los .populate('category') marcados como PASO 4:
 
 import { MongoServerError } from 'mongodb';
